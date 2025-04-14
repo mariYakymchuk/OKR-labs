@@ -1,0 +1,92 @@
+/* Стилі для тіла сторінки */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    background-color: #ffd9d0; /* Фон для тіла */
+    margin: 0;
+    padding: 0;
+}
+
+/* Стилі для заголовків */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Times New Roman', serif;
+    color: #0044cc;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* Стилі для заголовка h1 через ID */
+#top {
+    font-size: 2em;
+    font-weight: bold;
+    color: #00274d;
+}
+
+a {
+    color: #1e90ff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ff4500;
+    text-decoration: underline; /* Підкреслення при наведенні */
+}
+
+/* Стиль для абзаців через клас */
+p.text-italic {
+    font-size: 18px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    text-align: justify;
+    font-style: italic; /* Встановлення курсива для цього абзацу */
+}
+
+/* Стилі для important */
+.blue-p {
+    color:blue !important;
+} 
+
+/* Стилі для списків */
+ul, ol {
+    margin-left: 20px;
+}
+
+/* Марковані списки через клас */
+ul.list-square {
+    list-style-type: square; /* Квадратні маркери */
+    color: #579f00;
+}
+
+/* Нумеровані списки через клас */
+ol.list-decimal {
+    list-style-type: decimal;
+    line-height: 2.5;
+}
+
+/* Стилі для таблиць через клас */
+.table-bordered {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.table-bordered, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #e480fa;
+}
+
+td {
+    background-color: #b9f9fc;
+}
+
+
+
