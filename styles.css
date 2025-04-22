@@ -23,6 +23,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #00274d;
 }
 
+
 a {
     color: #1e90ff;
     text-decoration: none;
@@ -42,10 +43,10 @@ p.text-italic {
     font-style: italic; /* Встановлення курсива для цього абзацу */
 }
 
-/* Стилі для important */
+/* Використання оголошення important */
 .blue-p {
     color:blue !important;
-} 
+}
 
 /* Стилі для списків */
 ul, ol {
@@ -90,6 +91,8 @@ td {
 
 
 
+
+
 /* Лабораторна 4 */
 
 /* Контекстні селектори: Стилізувати тільки ті посилання, які знаходяться в середині параграфів */
@@ -114,4 +117,54 @@ ul ~ ol {
 ul > li {
     font-style: italic;
     color: #2e8b57; /* SeaGreen color */
+}
+
+
+
+
+
+/* Лабораторна 5 */
+
+/* Псевдокласи для посилань */
+a:link { color: #253f1f; }
+a:visited { color: #ff2480; }
+a:hover { color: #60ffda; text-decoration: underline; }
+a:active { color: #6288f6; }
+
+/* Псевдоклас :first-child */
+a:first-child {
+    font-size: 1.5rem;
+}
+
+/* Позиціонування та float */
+.info-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 300px;
+    background-color: #f9f9f9;
+    position: relative;
+    top: 20px;
+    left: 10px;
+}
+
+.float-box {
+    float: right;
+    width: 200px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #e6e6fa;
+}
+
+.highlight {
+    color: #6a0dad;
+    font-weight: bold;
+}
+
+/* Псевдоелементи */
+.info-box::before {
+    content: "📚 ";
+}
+
+.info-box::after {
+    content: " 📖";
 }
