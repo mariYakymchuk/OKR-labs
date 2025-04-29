@@ -45,7 +45,7 @@ p.text-italic {
 
 /* Використання оголошення important */
 .blue-p {
-    color:blue !important;
+    color: blue !important;
 }
 
 /* Стилі для списків */
@@ -90,9 +90,6 @@ td {
 }
 
 
-
-
-
 /* Лабораторна 4 */
 
 /* Контекстні селектори: Стилізувати тільки ті посилання, які знаходяться в середині параграфів */
@@ -119,17 +116,25 @@ ul > li {
     color: #2e8b57; /* SeaGreen color */
 }
 
-
-
-
-
 /* Лабораторна 5 */
 
 /* Псевдокласи для посилань */
-a:link { color: #253f1f; }
-a:visited { color: #ff2480; }
-a:hover { color: #60ffda; text-decoration: underline; }
-a:active { color: #6288f6; }
+a:link {
+    color: #253f1f;
+}
+
+a:visited {
+    color: #ff2480;
+}
+
+a:hover {
+    color: #60ffda;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #6288f6;
+}
 
 /* Псевдоклас :first-child */
 a:first-child {
@@ -168,3 +173,18 @@ a:first-child {
 .info-box::after {
     content: " 📖";
 }
+
+#string1, #string2 {
+    color: #ff6347;
+    min-width: 500px;
+}
+
+
+.additional-functions {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: .5rem;
+}
+
+

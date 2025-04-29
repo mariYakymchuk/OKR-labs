@@ -45,5 +45,69 @@
 
 <p><a href="#top">⬆️ До початку</a></p>
 
+<!--Лабораторна 6-->
+<!-- Кнопки для виклику скриптів -->
+<div class="buttons">
+    <button onclick="showAlert()">Вітання</button>
+    <button onclick="askName()">Вказати ім'я</button>
+    <button onclick="confirmVisit()">Запланувати візит</button>
+
+    <!-- Кнопки для виклику зовнішніх скриптів -->
+    <button onclick="userDialog()">Бажаєте поспілкуватись?</button>
+    <button onclick="redirectPage()">Ми рекомендуємо</button>
+    <button onclick="developerInfo('Якимчук', 'Марія')">Про розробника</button>
+</div>
+
+<!-- Поля для введення рядків -->
+<p>
+    <label>Рядок 1: <input type="text" id="string1" value="У своїй хаті своя правда, і сила, і воля."></label>
+</p>
+<p>
+    <label>Рядок 2: <input type="text" id="string2" value="Якби ви вчилися так, як треба, то й мудрість би була своя."></label>
+</p>
+<!-- Кнопка для порівняння -->
+<button onclick="compareInputStrings()">Порівняти введені рядки</button>
+
+<h3>Додаткові функції:</h3>
+<p>Сайт нашої бібліотеки є інтерактивним, та ми завжди відкриті до пропозицій щодо дизайну та покращення інтерфейсу.</p>
+<p>Бажаєте поексперементувати? :)</p>
+<div class="additional-functions">
+    <button onclick="changeBackground()">Змінити фон бібліотеки</button>
+    <button onclick="changeDomProperties()">Маніпуляції з властивостями DOM-вузлів</button>
+    <button onclick="writeToDocument()">Перезаписати сторінку</button>
+    <button onclick="createAndManipulateNodes()">Маніпуляції з вузлами</button>
+    <button onclick="removeInfoBox()">Видалити інфоблок</button>
+</div>
+
+<!-- Внутрішній скрипт -->
+<script>
+    // Функція alert
+    function showAlert() {
+        alert("Вітаємо у нашій бібліотеці!");
+    }
+
+    // Функція prompt
+    function askName() {
+        let name = prompt("Як вас звати?");
+        if (name) {
+            alert("Раді вас вітати, " + name + "!");
+        } else {
+            alert("Шкода, що ви не представились.");
+        }
+    }
+
+    // Функція confirm
+    function confirmVisit() {
+        let isConfirmed = confirm("Ви хочете відвідати нашу бібліотеку?");
+        if (isConfirmed) {
+            alert("Чудово! Чекаємо на вас!");
+        } else {
+            alert("Можливо, наступного разу.");
+        }
+    }
+</script>
+<!-- Підключення зовнішніх скриптів -->
+<script src="script.js"></script>
+<script src="additional_scripts.js"></script>
 </body>
 </html>
