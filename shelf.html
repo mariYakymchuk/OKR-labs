@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Книжкові полички </title>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            background-color: #fefbf3;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #5a3e36;
+        }
+
+        .shelf {
+            border: 3px solid #b77b57;
+            background-color: #fff2e6;
+            padding: 20px;
+            min-height: 180px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .shelf.highlight {
+            background-color: #ffe5cc;
+        }
+
+        .book {
+            width: 100px;
+            height: 140px;
+            background-color: #d3c0b0;
+            color: #3b2f2f;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: grab;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .book:hover {
+            transform: scale(1.05);
+        }
+
+        .book.dragging {
+            opacity: 0.5;
+            cursor: grabbing;
+        }
+    </style>
+</head>
+<body>
+
+<p class="text-italic">
+    <a href="index.html">Головна</a> |
+    <a href="catalog.html">Каталог книг</a> |
+    <a href="contact.html">Контакти</a> |
+    <a href="about.html">Про нас</a> |
+    <a href="shelf.html">Віртуальні полиці</a> |
+</p>
+
+
+<h1>Сформуй свої віртуальні полиці</h1>
+
+<div id="shelf1" class="shelf">
+    <div class="book">Кайдашева сім'я</div>
+    <div class="book">Маленький принц</div>
+</div>
+
+<div id="shelf2" class="shelf">
+    <div class="book">Фізика для школярів</div>
+</div>
+
+<script>
+    const books = document.querySelectorAll('.book');
+    const shelves = document.querySelectorAll('.shelf');
+    let draggedBook = null;
+    let ghostBook = null;
+    let offsetX = 0, offsetY = 0;
+
+    //ОБРОБКА КОЖНОЇ КНИГИ 
+    books.forEach(book => {
+        book.addEventListener('mousedown', (e) => {  // (Завдання 3) Початок перетягування
+            draggedBook = book;
+            // Розрахування зміщення
+            const rect = book.getBoundingClientRect();
+            offsetX = e.clientX - rect.left;
+            offsetY = e.clientY - rect.top;
+
+            // Створюємо візуальну копію книги
+            ghostBook = book.cloneNode(true);
+            ghostBook.style.position = 'absolute';
+            ghostBook.style.left = `${e.pageX - offsetX}px`;
+            ghostBook.style.top = `${e.pageY - offsetY}px`;
+            ghostBook.style.pointerEvents = 'none';
+            ghostBook.style.zIndex = 1000;
+            ghostBook.classList.add('dragging');
+            document.body.appendChild(ghostBook);
+
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        });
+
+        // Обробка події наведення миші на книгу (mouseover)
+        book.addEventListener('mouseover', (e) => {
+            e.target.style.backgroundColor = '#ffebcc';
+        });
+
+         // Обробка події коли миша йде з книги (mouseout)
+        book.addEventListener('mouseout', (e) => {
+            e.target.style.backgroundColor = '#d3c0b0';
+        });
+    });
+
+    // ФУНКЦІЯ ПЕРЕМІЩЕННЯ КОПІЇ КНИГИ (Завдання 3)
+    function onMouseMove(e) {
+        if (!ghostBook) return;
+        ghostBook.style.left = `${e.pageX - offsetX}px`;
+        ghostBook.style.top = `${e.pageY - offsetY}px`;
+
+        // Підсвічування полиці, над якою знаходиться курсор
+        shelves.forEach(shelf => {
+            const rect = shelf.getBoundingClientRect();
+            if (
+                e.clientX > rect.left &&
+                e.clientX < rect.right &&
+                e.clientY > rect.top &&
+                e.clientY < rect.bottom
+            ) {
+                shelf.classList.add('highlight');
+            } else {
+                shelf.classList.remove('highlight');
+            }
+        });
+    }
+
+    // ФУНКЦІЯ ВІДПУСКАННЯ КНОПКИ МИШІ
+    function onMouseUp(e) {
+        if (!draggedBook || !ghostBook) return;
+
+        let dropped = false;
+        shelves.forEach(shelf => {
+            const rect = shelf.getBoundingClientRect();
+            if (
+                e.clientX > rect.left &&
+                e.clientX < rect.right &&
+                e.clientY > rect.top &&
+                e.clientY < rect.bottom
+            ) {
+                shelf.appendChild(draggedBook);
+                dropped = true;
+            }
+            shelf.classList.remove('highlight');
+        });
+
+        // Видаляємо копію книги з DOM та обробники подій
+        document.body.removeChild(ghostBook);
+        ghostBook = null;
+        draggedBook = null;
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+    }
+
+    // Підсвічування рамки полиці при наведенні (Завдання 2 + event.relatedTarget) 
+    shelves.forEach(shelf => {
+        shelf.addEventListener('mouseover', (e) => {
+            if (e.target === shelf) {
+                shelf.style.borderColor = '#6c4c26'; // Змінюємо колір рамки при наведенні
+            }
+        });
+
+        shelf.addEventListener('mouseout', (e) => {
+            if (e.target === shelf && !e.relatedTarget?.classList.contains('book')) {
+                shelf.style.borderColor = '#b77b57';
+            }
+        });
+    });
+</script>
+</body>
+</html>

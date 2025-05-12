@@ -6,39 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Каталог книг</title>
-
-    <style>
-        #filter-menu {
-            margin-bottom: 20px;
-        }
-        #filter-menu button {
-            margin-right: 8px;
-            padding: 8px 16px;
-            border: 1px solid #4caf50;
-            background: #f8fff8;
-            color: #2e7d32;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.2s, color 0.2s;
-        }
-        #filter-menu button.active,
-        #filter-menu button:focus {
-            background: #c8e6c9;
-            color: #1b5e20;
-            outline: none;
-        }
-        #book-list {
-            margin-bottom: 20px;
-        }
-        .book-item {
-            padding: 10px 0;
-            border-bottom: 1px solid #e0e0e0;
-            font-size: 1.1em;
-        }
-        .book-item:last-child {
-            border-bottom: none;
-        }
-    </style>
 </head>
 <body>
 
@@ -80,29 +47,11 @@
 
 <h2>Меню фільтрації книг</h2>
 <div id="filter-menu">
-    <button data-action="filter" data-genre="all">Усі жанри</button>
-    <button data-action="filter" data-genre="fiction">Художня</button>
-    <button data-action="filter" data-genre="science">Наукова</button>
-    <button data-action="filter" data-genre="children">Дитяча</button>
-    <button data-action="filter" data-genre="historical">Історична</button>
-</div>
-
-<div id="book-list">
-    <div class="book-item" data-genre="fiction">
-        <b>Кайдашева сім'я</b> — Іван Нечуй-Левицький
-    </div>
-    <div class="book-item" data-genre="science">
-        <b>Коротка історія часу</b> — Стівен Гокінг
-    </div>
-    <div class="book-item" data-genre="children">
-        <b>Колобок</b> — Народні казки
-    </div>
-    <div class="book-item" data-genre="historical">
-        <b>Чорна рада</b> — Пантелеймон Куліш
-    </div>
-    <div class="book-item" data-genre="fiction">
-        <b>Тіні забутих предків</b> — Михайло Коцюбинський
-    </div>
+    <button data-action="filter" data-genre="all" data-behavior="filter">Усі жанри</button>
+    <button data-action="filter" data-genre="fiction" data-behavior="filter">Художня</button>
+    <button data-action="filter" data-genre="science" data-behavior="filter">Наукова</button>
+    <button data-action="filter" data-genre="children" data-behavior="filter">Дитяча</button>
+    <button data-action="filter" data-genre="historical" data-behavior="filter">Історична</button>
 </div>
 
 <p id="filter-result" style="font-weight: bold; color: darkblue;"></p>
@@ -137,8 +86,6 @@
     // 2. Обробка кнопок фільтрації
     const filterMenu = document.getElementById("filter-menu");
     const filterResult = document.getElementById("filter-result");
-    const bookList = document.getElementById("book-list");
-    const bookItems = bookList.querySelectorAll(".book-item");
 
     filterMenu.onclick = function(event) {
         const button = event.target.closest("button");
@@ -149,10 +96,6 @@
             filterResult.textContent = genre === "all"
                 ? "Відображено всі жанри."
                 : `Фільтр застосовано: ${button.textContent}`;
-
-            bookItems.forEach(item => {
-                item.style.display = (genre === "all" || item.dataset.genre === genre) ? "" : "none";
-            });
         }
     };
 
